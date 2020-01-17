@@ -7,8 +7,6 @@
 <body>
 <h1>Title: {{.Title}}</h1>
 
-<p>Point1: {{printf "%s" .Point1}}</p>
-<p>Point2: {{printf "%s" .Point2}}</p>
-<p>Point3: {{printf "%s" .Point3}}</p>
+{{range .Point}}<p>{{. | printf "%s"}}</p>{{end}}
 </body>
 </html>

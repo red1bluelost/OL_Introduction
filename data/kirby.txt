@@ -1,4 +1,3 @@
-(p)kirby says test
-(p)kirby says test more
-(p)kirby says good test
-(p)
+kirby says test(p)
+kirby says test more(p)
+kirby says good test(p)
