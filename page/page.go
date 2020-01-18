@@ -9,31 +9,15 @@ import (
 	"net/http"
 )
 
-type Flag int
-
-const (
-	POINT Flag = 0
-	IMAGE Flag = 1
-	VIDEO Flag = 2
-)
-
-func (f Flag) FlagBytes() []byte {
-	flags := [...][]byte{
-		[]byte("(p)"),
-		[]byte("(i)"),
-		[]byte("(v)"),
-	}
-	return flags[f]
-}
-
 type Page struct {
 	Title string
 	Point [][]byte
 }
 
+//handler function for all http requests
 func Handler(w http.ResponseWriter, r *http.Request) {
 	title := r.URL.Path[len("/"):]
-	p, err := handleLoadPage(title)
+	p, err := loadPage(title)
 	if err != nil {
 		log.Panicf("Handler failed %s", err)
 	}
@@ -41,12 +25,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w, p)
 }
 
-func handleLoadPage(title string) (*Page, error) {
-	title = title[:]
-	page, err := loadPage(title)
-	return page, err
-}
-
+//takes end of url and loads page with data
 func loadPage(title string) (*Page, error) {
 	filename := "data/" + title + ".txt"
 	body, err := ioutil.ReadFile(filename)
@@ -62,42 +41,48 @@ func loadPage(title string) (*Page, error) {
 	return page, nil
 }
 
-func (p *Page) BodyParse(df []byte) error {
-	for len(df) > 3 {
-		end := 0
-		var curFlag Flag
-		for j := 0; j < len(df) ; j++ {
-			var ok bool
-			curFlag, ok = checkFlag(df[j:(j + 3)])
+//parses the txt file and assigns data to correct fields
+func (p *Page) BodyParse(rawData []byte) error {
+	for len(rawData) > 3 {
+		var (
+			end = 0
+			curFlag Flag
+			ok bool
+		)
+		for j := 0; j < len(rawData) ; j++ {
+			curFlag, ok = checkFlag(rawData[j:(j + 3)])
 			if ok {
 				end = j + 3
 				break
 			}
 		}
+		if !ok {
+			return fmt.Errorf("BodyParse could not find a flag marker")
+		}
 		switch curFlag {
 		case POINT:
-			p.Point = append(p.Point, df[:(end-3)])
+			p.Point = append(p.Point, rawData[:(end-3)])
 		case IMAGE:
 			panic("implement this")
 		case VIDEO:
 			panic("implement this")
 		}
-		df = df[end:]
-		fmt.Printf("%s\n", df)
+		rawData = rawData[end:]
 	}
 	return nil
 }
 
-func checkFlag(df []byte) (Flag, bool) {
-	ok := bytes.Compare(POINT.FlagBytes(), df)
+//compares subsection of txt file to the flags and returns if and what type flag found
+func checkFlag(rawData []byte) (Flag, bool) {
+	ok := bytes.Compare(POINT.FlagBytes(), rawData)
 	if ok == 0 {
 		return POINT, true
 	}
-	ok = bytes.Compare(IMAGE.FlagBytes(), df)
+	ok = bytes.Compare(IMAGE.FlagBytes(), rawData)
 	if ok == 0 {
 		return IMAGE, true
 	}
-	ok = bytes.Compare(VIDEO.FlagBytes(), df)
+	ok = bytes.Compare(VIDEO.FlagBytes(), rawData)
 	if ok == 0 {
 		return VIDEO, true
 	}
