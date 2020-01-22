@@ -12,8 +12,8 @@ import (
 type Page struct {
 	Title string
 	Point [][]byte
-	Image [][]byte
-	Video []byte
+	Image *ImageHolder
+	Video string
 }
 
 //handler function for all http requests
@@ -23,7 +23,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Panicf("Handler failed %s", err)
 	}
-	t, _ := template.ParseFiles("kirby.html")
+	t, _ := template.ParseFiles("template/template.html")
 	t.Execute(w, p)
 }
 
@@ -65,9 +65,12 @@ func (p *Page) BodyParse(rawData []byte) error {
 		case POINT:
 			p.Point = append(p.Point, rawData[:(end-3)])
 		case IMAGE:
-			p.Image = append(p.Image, rawData[:(end-3)])
+			if p.Image == nil {
+				p.Image = new(ImageHolder)
+			}
+			p.Image.AssignImage(rawData[:(end - 3)])
 		case VIDEO:
-			p.Video = rawData[:(end-3)]
+			p.Video = string(rawData[:(end - 3)])
 		}
 		rawData = rawData[end:]
 	}

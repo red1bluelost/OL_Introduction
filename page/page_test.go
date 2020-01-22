@@ -2,17 +2,17 @@ package page
 
 import (
 	"bytes"
+	"strings"
 	"testing"
 )
 
 func TestBodyParse(t *testing.T) {
 	testPage := new(Page)
 	testInput := []byte(
-		"Point one(p)Image_1.png(i)Point two(p)Image_2.png(i)Point three(p)Point four(p)Image_3.png(i)video.link.to.a.youtube.video(v)",
-		)
+		"Point one(p)Image 1(i)Point two(p)Image 2(i)Point three(p)Point four(p)video.link.to.a.youtube.video(v)",
+	)
 	resultPoint := [][]byte{[]byte("Point one"), []byte("Point two"), []byte("Point three"), []byte("Point four")}
-	resultImage := [][]byte{[]byte("Image_1.png"), []byte("Image_2.png"), []byte("Image_3.png")}
-	resultVideo := []byte("video.link.to.a.youtube.video")
+	resultVideo := "video.link.to.a.youtube.video"
 
 	testPage.BodyParse(testInput)
 
@@ -30,21 +30,20 @@ func TestBodyParse(t *testing.T) {
 			)
 		}
 	}
-	if len(testPage.Image) != len(resultImage) {
-		t.Errorf(
-			"Incorrect amount of images in the page. Should be %d, was %d",
-			len(resultImage), len(testPage.Image),
-		)
-	}
-	for i := 0; i < len(resultImage); i++ {
-		if bytes.Compare(resultImage[i], testPage.Image[i]) != 0 {
-			t.Errorf(
-				"Image %d should be %s, was %s.",
-				i, resultImage[i], testPage.Image[i],
-			)
+	if testPage.Image == nil {
+		t.Errorf("Images were not found.")
+	} else {
+		if testPage.Image.Img1 == nil {
+			t.Errorf("Image 1 was not found.")
+		}
+		if testPage.Image.Img2 == nil {
+			t.Errorf("Image 2 was not found.")
+		}
+		if testPage.Image.Img3 != nil {
+			t.Errorf("Image 3 was somehow found.")
 		}
 	}
-	if bytes.Compare(resultVideo, testPage.Video) != 0 {
+	if strings.Compare(resultVideo, testPage.Video) != 0 {
 		t.Errorf(
 			"Video should be %s, was %s.",
 			resultVideo, testPage.Video,
