@@ -7,6 +7,7 @@ const (
 	POINT Flag = 0
 	IMAGE Flag = 1
 	VIDEO Flag = 2
+	HEADING Flag = 3
 )
 
 func (f Flag) FlagBytes() []byte {
@@ -14,6 +15,7 @@ func (f Flag) FlagBytes() []byte {
 		[]byte("(p)"),
 		[]byte("(i)"),
 		[]byte("(v)"),
+		[]byte("(h)"),
 	}
 	return flags[f]
 }

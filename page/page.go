@@ -14,6 +14,7 @@ type Page struct {
 	Point [][]byte
 	Image *ImageHolder
 	Video string
+	Heading []byte
 }
 
 //handler function for all http requests
@@ -25,6 +26,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	}
 	t, _ := template.ParseFiles("template/template.html")
 	t.Execute(w, p)
+	//handle this error from execute
 }
 
 //takes end of url and loads page with data
@@ -71,6 +73,8 @@ func (p *Page) BodyParse(rawData []byte) error {
 			p.Image.AssignImage(rawData[:(end - 3)])
 		case VIDEO:
 			p.Video = string(rawData[:(end - 3)])
+		case HEADING:
+			p.Heading = rawData[:(end - 3)]
 		}
 		rawData = rawData[end:]
 	}
@@ -83,13 +87,21 @@ func checkFlag(rawData []byte) (Flag, bool) {
 	if ok == 0 {
 		return POINT, true
 	}
+
 	ok = bytes.Compare(IMAGE.FlagBytes(), rawData)
 	if ok == 0 {
 		return IMAGE, true
 	}
+
 	ok = bytes.Compare(VIDEO.FlagBytes(), rawData)
 	if ok == 0 {
 		return VIDEO, true
 	}
+
+	ok = bytes.Compare(HEADING.FlagBytes(), rawData)
+	if ok == 0 {
+		return HEADING, true
+	}
+
 	return 0, false
 }
