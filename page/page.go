@@ -12,6 +12,8 @@ import (
 type Page struct {
 	Title string
 	Point [][]byte
+	Image [][]byte
+	Video []byte
 }
 
 //handler function for all http requests
@@ -45,11 +47,11 @@ func loadPage(title string) (*Page, error) {
 func (p *Page) BodyParse(rawData []byte) error {
 	for len(rawData) > 3 {
 		var (
-			end = 0
+			end     = 0
 			curFlag Flag
-			ok bool
+			ok      bool
 		)
-		for j := 0; j < len(rawData) ; j++ {
+		for j := 0; j < len(rawData); j++ {
 			curFlag, ok = checkFlag(rawData[j:(j + 3)])
 			if ok {
 				end = j + 3
@@ -63,9 +65,9 @@ func (p *Page) BodyParse(rawData []byte) error {
 		case POINT:
 			p.Point = append(p.Point, rawData[:(end-3)])
 		case IMAGE:
-			panic("implement this")
+			p.Image = append(p.Image, rawData[:(end-3)])
 		case VIDEO:
-			panic("implement this")
+			p.Video = rawData[:(end-3)]
 		}
 		rawData = rawData[end:]
 	}
