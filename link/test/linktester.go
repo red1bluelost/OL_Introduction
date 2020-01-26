@@ -15,10 +15,16 @@ func main() {
 	linkTester.Initialize()
 	linkTester.Reset()
 
-	//get test input
-	var input string
-	fmt.Scan(&input)
+	for {
+		//get test input
+		var input string
+		fmt.Scan(&input)
+		if input == "quit" {break}
 
-	//output result
-	fmt.Print(input)
+		//handle link assignment
+		linkTester.Handle(input)
+
+		//output result
+		linkTester.DebugLinks()
+	}
 }

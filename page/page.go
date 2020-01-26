@@ -12,12 +12,14 @@ import (
 )
 
 type Page struct {
-	Title   string
+	Title string
 
 	Heading []byte
 	Point   [][]byte
 	Image   *ImageHolder
 	Video   string
+
+	LinkHandler *link.Linker
 }
 
 var GLinker link.Linker
@@ -29,7 +31,7 @@ func PresentationHandler(w http.ResponseWriter, r *http.Request) {
 
 	p, err := loadPage(title)
 	if err != nil {
-		log.Panicf("PresentationHandler failed %s", err)
+		log.Panicf("PresentationHandler failed to load %s", err)
 	}
 	t, _ := template.ParseFiles("data/template.html")
 	t.Execute(w, p)
@@ -53,17 +55,25 @@ func IgnoreFaviconHandler(w http.ResponseWriter, r *http.Request) {
 
 //takes end of url and loads page with data
 func loadPage(title string) (*Page, error) {
+	//read in file
 	filename := "data/" + title + ".txt"
 	body, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}
+
+	//set up page pointer
 	page := new(Page)
+	page.LinkHandler = new(link.Linker)
+	page.LinkHandler = &GLinker
+
+	//parse the body and handle links
 	ok := page.BodyParse(body)
 	if ok != nil {
 		panic(ok)
 	}
 	page.Title = title
+	page.LinkHandler.Handle(title)
 	return page, nil
 }
 
