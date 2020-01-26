@@ -3,11 +3,12 @@ package page
 import (
 	"bytes"
 	"fmt"
-	"github.com/red1bluelost/OL_Introduction/link"
 	"html/template"
 	"io/ioutil"
 	"log"
 	"net/http"
+
+	"github.com/red1bluelost/OL_Introduction/link"
 )
 
 type Page struct {
@@ -21,11 +22,13 @@ type Page struct {
 var GLinker link.Linker
 
 //handler function for all http requests
-func MainHandler(w http.ResponseWriter, r *http.Request) {
-	title := r.URL.Path[len("/"):]
+func PresentationHandler(w http.ResponseWriter, r *http.Request) {
+	title := r.URL.Path[len("/presentation/"):]
+	fmt.Printf("%s\n", title)
+
 	p, err := loadPage(title)
 	if err != nil {
-		log.Panicf("MainHandler failed %s", err)
+		log.Panicf("PresentationHandler failed %s", err)
 	}
 	t, _ := template.ParseFiles("data/template.html")
 	t.Execute(w, p)
@@ -40,7 +43,11 @@ func StartHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	linker.Reset()
 
-	http.Redirect(w, r, "/intro", http.StatusSeeOther)
+	http.Redirect(w, r, "/presentation/intro", http.StatusSeeOther)
+}
+
+func IgnoreFaviconHandler(w http.ResponseWriter, r *http.Request) {
+	log.Panicf("Ignore this favicon request")
 }
 
 //takes end of url and loads page with data

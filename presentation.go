@@ -1,13 +1,23 @@
 package main
 
 import (
-	"github.com/red1bluelost/OL_Introduction/page"
 	"log"
 	"net/http"
+
+	"github.com/red1bluelost/OL_Introduction/page"
 )
 
 func main() {
+	//redirect css requests
+	http.Handle(
+		"/presentation/css/",
+		http.StripPrefix("/presentation/css/", http.FileServer(http.Dir("data/css"))),
+	)
+
+	//handle urls
 	http.HandleFunc("/start", page.StartHandler)
-	http.HandleFunc("/", page.MainHandler)
+	http.HandleFunc("/presentation/", page.PresentationHandler)
+
+	//http.HandleFunc("favicon", page.IgnoreFaviconHandler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
