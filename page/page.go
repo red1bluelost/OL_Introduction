@@ -13,10 +13,11 @@ import (
 
 type Page struct {
 	Title   string
+
+	Heading []byte
 	Point   [][]byte
 	Image   *ImageHolder
 	Video   string
-	Heading []byte
 }
 
 var GLinker link.Linker
@@ -93,7 +94,8 @@ func (p *Page) BodyParse(rawData []byte) error {
 			}
 			p.Image.AssignImage(rawData[:(end - 3)])
 		case VIDEO:
-			p.Video = string(rawData[:(end - 3)])
+			panic("implement me")
+			//p.Video = string(rawData[:(end - 3)])
 		case HEADING:
 			p.Heading = rawData[:(end - 3)]
 		}

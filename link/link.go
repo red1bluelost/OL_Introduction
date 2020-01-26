@@ -4,14 +4,15 @@ import ()
 
 type Linker struct {
 	AlreadyInitialized bool
+	previousLink       string
 
 	intro *link
 
-	college  *link
-	col      uint8
-	colCecs  *link
-	colNUCAR *link
-	colClubs *link
+	school   *link
+	sch      uint8
+	schCecs  *link
+	schNUCAR *link
+	schClubs *link
 
 	music     *link
 	mus       uint8
@@ -31,10 +32,10 @@ func (l *link) activate() {
 func (l *Linker) Initialize() {
 	l.intro = new(link)
 
-	l.college = new(link)
-	l.colCecs = new(link)
-	l.colNUCAR = new(link)
-	l.colClubs = new(link)
+	l.school = new(link)
+	l.schCecs = new(link)
+	l.schNUCAR = new(link)
+	l.schClubs = new(link)
 
 	l.music = new(link)
 	l.musMetal = new(link)
@@ -45,13 +46,13 @@ func (l *Linker) Initialize() {
 }
 
 func (l *Linker) Reset() {
-	l.col, l.mus = 2, 2
+	l.sch, l.mus = 2, 2
 	l.intro.activate()
 
-	l.college = nil
-	l.colCecs = nil
-	l.colNUCAR = nil
-	l.colClubs = nil
+	l.school = nil
+	l.schCecs = nil
+	l.schNUCAR = nil
+	l.schClubs = nil
 
 	l.music = nil
 	l.musMetal = nil

@@ -8,10 +8,14 @@ import (
 )
 
 func main() {
-	//redirect css requests
+	//redirect css and images requests
 	http.Handle(
 		"/presentation/css/",
 		http.StripPrefix("/presentation/css/", http.FileServer(http.Dir("data/css"))),
+	)
+	http.Handle(
+		"/presentation/images/",
+		http.StripPrefix("/presentation/images/", http.FileServer(http.Dir("data/images"))),
 	)
 
 	//handle urls
