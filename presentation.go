@@ -7,6 +7,8 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", page.Handler)
+	http.HandleFunc("/start", page.StartHandler)
+	http.HandleFunc("/reset", page.ResetHandler)
+	http.HandleFunc("/", page.MainHandler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

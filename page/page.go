@@ -3,6 +3,7 @@ package page
 import (
 	"bytes"
 	"fmt"
+	"github.com/red1bluelost/OL_Introduction/link"
 	"html/template"
 	"io/ioutil"
 	"log"
@@ -10,23 +11,40 @@ import (
 )
 
 type Page struct {
-	Title string
-	Point [][]byte
-	Image *ImageHolder
-	Video string
+	Title   string
+	Point   [][]byte
+	Image   *ImageHolder
+	Video   string
 	Heading []byte
 }
 
 //handler function for all http requests
-func Handler(w http.ResponseWriter, r *http.Request) {
+func MainHandler(w http.ResponseWriter, r *http.Request) {
 	title := r.URL.Path[len("/"):]
 	p, err := loadPage(title)
 	if err != nil {
-		log.Panicf("Handler failed %s", err)
+		log.Panicf("MainHandler failed %s", err)
 	}
-	t, _ := template.ParseFiles("template/template.html")
+	t, _ := template.ParseFiles("data/template.html")
 	t.Execute(w, p)
 	//handle this error from execute
+}
+
+func StartHandler(w http.ResponseWriter, r *http.Request) {
+	linker := new(link.Linker)
+	linker = &link.G_Linker
+	linker.Initialize()
+	linker.Reset()
+
+	http.Redirect(w, r, "/intro", http.StatusSeeOther)
+}
+
+func ResetHandler(w http.ResponseWriter, r *http.Request) {
+	linker := new(link.Linker)
+	linker = &link.G_Linker
+	linker.Reset()
+
+	http.Redirect(w, r, "/intro", http.StatusSeeOther)
 }
 
 //takes end of url and loads page with data

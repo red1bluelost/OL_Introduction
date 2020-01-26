@@ -4,9 +4,9 @@ package page
 type Flag int
 
 const (
-	POINT Flag = 0
-	IMAGE Flag = 1
-	VIDEO Flag = 2
+	POINT   Flag = 0
+	IMAGE   Flag = 1
+	VIDEO   Flag = 2
 	HEADING Flag = 3
 )
 
