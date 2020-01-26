@@ -18,6 +18,8 @@ type Page struct {
 	Heading []byte
 }
 
+var GLinker link.Linker
+
 //handler function for all http requests
 func MainHandler(w http.ResponseWriter, r *http.Request) {
 	title := r.URL.Path[len("/"):]
@@ -32,16 +34,10 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 
 func StartHandler(w http.ResponseWriter, r *http.Request) {
 	linker := new(link.Linker)
-	linker = &link.G_Linker
-	linker.Initialize()
-	linker.Reset()
-
-	http.Redirect(w, r, "/intro", http.StatusSeeOther)
-}
-
-func ResetHandler(w http.ResponseWriter, r *http.Request) {
-	linker := new(link.Linker)
-	linker = &link.G_Linker
+	linker = &GLinker
+	if !linker.AlreadyInitialized {
+		linker.Initialize()
+	}
 	linker.Reset()
 
 	http.Redirect(w, r, "/intro", http.StatusSeeOther)

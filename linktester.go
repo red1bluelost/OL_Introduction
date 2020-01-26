@@ -6,10 +6,12 @@ import (
 	"github.com/red1bluelost/OL_Introduction/link"
 )
 
+var GLinker link.Linker
+
 func main() {
 	//create test linker pointer to the global variable
 	linkTester := new(link.Linker)
-	linkTester = &link.G_Linker
+	linkTester = &GLinker
 	linkTester.Initialize()
 	linkTester.Reset()
 

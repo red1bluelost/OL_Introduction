@@ -3,6 +3,8 @@ package link
 import ()
 
 type Linker struct {
+	AlreadyInitialized bool
+
 	intro *link
 
 	college  *link
@@ -25,8 +27,6 @@ type link string
 func (l *link) activate() {
 	*l = "active"
 }
-
-var G_Linker Linker
 
 func (l *Linker) Initialize() {
 	l.intro = new(link)
