@@ -2,8 +2,10 @@ package page
 
 type ImageHolder struct {
 	//fill in sections as you add images
-	//possibly replace numbers with more descriptive names
-	Img1, Img2, Img3 *string
+	LV, AVHS *string
+	CPP, GitHub, GoLang, Akita, Baja, NUSound *string
+	RG, BTBAM, AAL, Paul, Alissa *string
+	Program *string
 }
 
 //takes input parses from txt file and assigns to specific image holder
@@ -12,13 +14,34 @@ func (ih *ImageHolder) AssignImage(img []byte) {
 	input := string(img)
 
 	switch input {
-	//possibly replace numbers with more descriptive names
-	case "Image 1":
-		ih.Img1 = &input
-	case "Image 2":
-		ih.Img2 = &input
-	case "Image 3":
-		ih.Img3 = &input
+	case "LasVegas":
+		ih.LV = &input
+	case "ArborView":
+		ih.AVHS = &input
+	case "CPP":
+		ih.CPP = &input
+	case "GitHub":
+		ih.GitHub = &input
+	case "GoLang":
+		ih.GoLang = &input
+	case "Akita":
+		ih.Akita = &input
+	case "Baja":
+		ih.Baja = &input
+	case "NUSound":
+		ih.NUSound = &input
+	case "RG":
+		ih.RG = &input
+	case "BTBAM":
+		ih.BTBAM = &input
+	case "AAL":
+		ih.AAL = &input
+	case "Paul":
+		ih.Paul = &input
+	case "Alissa":
+		ih.Alissa = &input
+	case "meme":
+		ih.Program = &input
 	}
 
 }

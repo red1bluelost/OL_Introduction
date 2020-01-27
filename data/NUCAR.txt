@@ -1,0 +1,7 @@
+NU Computer Architecture Research Lab(h)
+Multi-GPU simulator(p)
+Built with Akita framework for computer architecture simulation(p)
+My job has been to shift driver page migration to an interface(p)
+Written with the Go programming language(p)
+GoLang(i)
+Akita(i)

@@ -12,7 +12,6 @@ func main() {
 	//create test linker pointer to the global variable
 	linkTester := new(link.Linker)
 	linkTester = &GLinker
-	linkTester.Initialize()
 	linkTester.Reset()
 
 	for {

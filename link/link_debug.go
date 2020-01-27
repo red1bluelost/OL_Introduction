@@ -3,7 +3,6 @@ package link
 import "fmt"
 
 func (l *Linker) DebugLinks() {
-	fmt.Printf("Already Initialized: %t\n", l.AlreadyInitialized)
 	fmt.Printf("previous link: %s\n",l.previousLink)
 	fmt.Println("")
 

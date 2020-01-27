@@ -1,3 +1,4 @@
-kirby says test(p)
-kirby says test more(p)
-kirby says good test(p)
+Presentation about Me(h)
+Choose Your Own Adventure (Kinda)(p)
+Born and raised in Las Vegas, Nevada(p)
+LasVegas(i)

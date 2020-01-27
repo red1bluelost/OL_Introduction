@@ -1,7 +1,7 @@
 package link
 
 type Linker struct {
-	AlreadyInitialized bool
+	//AlreadyInitialized bool
 	previousLink       string
 
 	viewSchool *link
@@ -24,24 +24,6 @@ type Linker struct {
 type link string
 
 var gLink link = "active"
-
-func (l *Linker) Initialize() {
-	l.AlreadyInitialized = true
-
-	l.viewSchool = new(link)
-	l.school = new(link)
-	l.schCecs = new(link)
-	l.schNUCAR = new(link)
-	l.schClubs = new(link)
-
-	l.viewMusic = new(link)
-	l.music = new(link)
-	l.musMetal = new(link)
-	l.musGuitar = new(link)
-	l.musStrEdg = new(link)
-
-	l.end = new(link)
-}
 
 func (l *Linker) Reset() {
 	l.sch, l.mus = 4, 4

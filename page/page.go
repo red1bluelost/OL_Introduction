@@ -41,9 +41,6 @@ func PresentationHandler(w http.ResponseWriter, r *http.Request) {
 func StartHandler(w http.ResponseWriter, r *http.Request) {
 	linker := new(link.Linker)
 	linker = &GLinker
-	if !linker.AlreadyInitialized {
-		linker.Initialize()
-	}
 	linker.Reset()
 
 	http.Redirect(w, r, "/presentation/intro", http.StatusSeeOther)
@@ -64,7 +61,6 @@ func loadPage(title string) (*Page, error) {
 
 	//set up page pointer
 	page := new(Page)
-	page.LinkHandler = new(link.Linker)
 	page.LinkHandler = &GLinker
 
 	//parse the body and handle links
@@ -103,9 +99,6 @@ func (p *Page) BodyParse(rawData []byte) error {
 				p.Image = new(ImageHolder)
 			}
 			p.Image.AssignImage(rawData[:(end - 3)])
-		case VIDEO:
-			panic("implement me")
-			//p.Video = string(rawData[:(end - 3)])
 		case HEADING:
 			p.Heading = rawData[:(end - 3)]
 		}
@@ -124,11 +117,6 @@ func checkFlag(rawData []byte) (Flag, bool) {
 	ok = bytes.Compare(IMAGE.FlagBytes(), rawData)
 	if ok == 0 {
 		return IMAGE, true
-	}
-
-	ok = bytes.Compare(VIDEO.FlagBytes(), rawData)
-	if ok == 0 {
-		return VIDEO, true
 	}
 
 	ok = bytes.Compare(HEADING.FlagBytes(), rawData)
