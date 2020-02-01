@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Links</title>
+    <link href="css/links.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+{{if .ViewSchool}}
+    <table style="float: left; margin-left: 7em">
+        <tr>
+            <th>{{if .School}}<a href="presentation/school" target="_parent">Education</a> {{else}}Education{{end}}</th>
+        </tr>
+        {{if .SchCecs}}
+        <tr>
+            <th><a href="presentation/CECS" target="_parent">My Major</a></th>
+        </tr>
+        {{end}}
+        {{if .SchNUCAR}}
+            <tr>
+                <th><a href="presentation/NUCAR" target="_parent">Research</a></th>
+            </tr>
+        {{end}}
+        {{if .SchClubs}}
+            <tr>
+                <th><a href="presentation/clubs" target="_parent">Clubs</a></th>
+            </tr>
+        {{end}}
+    </table>
+{{end}}
+{{if .ViewMusic}}
+    <table style="float: right; margin-right: 7em">
+        <tr>
+            <th>{{if .Music}}<a href="presentation/music" target="_parent">Music</a>{{else}}Music{{end}}</th>
+        </tr>
+        {{if .MusGuitar}}
+            <tr>
+                <th><a href="presentation/guitar" target="_parent">Instruments</a></th>
+            </tr>
+        {{end}}
+        {{if .MusMetal}}
+            <tr>
+                <th><a href="presentation/metal" target="_parent">Favorite Genre</a></th>
+            </tr>
+        {{end}}
+        {{if .MusStrEdg}}
+            <tr>
+                <th><a href="presentation/stredg" target="_parent">Straight Edge</a></th>
+            </tr>
+        {{end}}
+    </table>
+{{end}}
+{{if .End}}
+    <h6><a href="presentation/end" target="_parent">Finally</a>
+    </h6>
+{{end}}
+</body>
+</html>

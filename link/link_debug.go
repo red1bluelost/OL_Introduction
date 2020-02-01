@@ -6,23 +6,23 @@ func (l *Linker) DebugLinks() {
 	fmt.Printf("previous link: %s\n",l.previousLink)
 	fmt.Println("")
 
-	fmt.Printf("viewSchool: %s\n",l.viewSchool.printLink())
-	fmt.Printf("school: %s\n",l.school.printLink())
+	fmt.Printf("ViewSchool: %s\n",l.ViewSchool.printLink())
+	fmt.Printf("School: %s\n",l.School.printLink())
 	fmt.Printf("sch: %d\n", l.sch)
-	fmt.Printf("schCecs: %s\n",l.schCecs.printLink())
-	fmt.Printf("schNUCAR: %s\n",l.schNUCAR.printLink())
-	fmt.Printf("schClubs: %s\n",l.schClubs.printLink())
+	fmt.Printf("SchCecs: %s\n",l.SchCecs.printLink())
+	fmt.Printf("SchNUCAR: %s\n",l.SchNUCAR.printLink())
+	fmt.Printf("SchClubs: %s\n",l.SchClubs.printLink())
 	fmt.Println("")
 
-	fmt.Printf("viewMusic: %s\n",l.viewMusic.printLink())
-	fmt.Printf("music: %s\n",l.music.printLink())
+	fmt.Printf("ViewMusic: %s\n",l.ViewMusic.printLink())
+	fmt.Printf("Music: %s\n",l.Music.printLink())
 	fmt.Printf("mus: %d\n", l.mus)
-	fmt.Printf("musGuitar: %s\n",l.musGuitar.printLink())
-	fmt.Printf("musMetal: %s\n",l.musMetal.printLink())
-	fmt.Printf("musStrEdg: %s\n",l.musStrEdg.printLink())
+	fmt.Printf("MusGuitar: %s\n",l.MusGuitar.printLink())
+	fmt.Printf("MusMetal: %s\n",l.MusMetal.printLink())
+	fmt.Printf("MusStrEdg: %s\n",l.MusStrEdg.printLink())
 	fmt.Println("")
 
-	fmt.Printf("end: %s\n", l.end.printLink())
+	fmt.Printf("End: %s\n", l.End.printLink())
 }
 
 func (l *link) printLink() string {

@@ -17,12 +17,18 @@ type Page struct {
 	Heading []byte
 	Point   [][]byte
 	Image   *ImageHolder
-	Video   string
-
-	LinkHandler *link.Linker
 }
 
 var GLinker link.Linker
+
+func LinkPageHandler(w http.ResponseWriter, r *http.Request) {
+	t, _ := template.ParseFiles("data/links.html")
+	err := t.Execute(w, GLinker)
+	if err != nil {
+		fmt.Printf("Linker could not execute\n")
+	}
+	//handle this error from execute
+}
 
 //handler function for all http requests
 func PresentationHandler(w http.ResponseWriter, r *http.Request) {
@@ -34,15 +40,13 @@ func PresentationHandler(w http.ResponseWriter, r *http.Request) {
 		log.Panicf("PresentationHandler failed to load %s", err)
 	}
 	t, _ := template.ParseFiles("data/template.html")
-	t.Execute(w, p)
-	//handle this error from execute
-}
+	err = t.Execute(w, p)
+	if err != nil {
+		fmt.Printf("Page template could not execute\n")
+	}}
 
 func StartHandler(w http.ResponseWriter, r *http.Request) {
-	linker := new(link.Linker)
-	linker = &GLinker
-	linker.Reset()
-
+	GLinker.Reset()
 	http.Redirect(w, r, "/presentation/intro", http.StatusSeeOther)
 }
 
@@ -61,7 +65,6 @@ func loadPage(title string) (*Page, error) {
 
 	//set up page pointer
 	page := new(Page)
-	page.LinkHandler = &GLinker
 
 	//parse the body and handle links
 	ok := page.BodyParse(body)
@@ -69,7 +72,9 @@ func loadPage(title string) (*Page, error) {
 		panic(ok)
 	}
 	page.Title = title
-	page.LinkHandler.Handle(title)
+
+	//tell the linker to handle the event
+	GLinker.Handle(title)
 	return page, nil
 }
 
@@ -98,7 +103,7 @@ func (p *Page) BodyParse(rawData []byte) error {
 			if p.Image == nil {
 				p.Image = new(ImageHolder)
 			}
-			p.Image.AssignImage(rawData[:(end - 3)])
+			p.Image.AssignImage(rawData[2:(end - 3)])
 		case HEADING:
 			p.Heading = rawData[:(end - 3)]
 		}

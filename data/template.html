@@ -6,8 +6,14 @@
     <link href="css/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h1>Title: {{.Title}}</h1>
-{{range .Point}}<p>{{. | printf "%s"}}</p>{{end}}
-{{with .Video}}<iframe {{printf "%s" .}}></iframe>{{end}}
+<h1>Orientation Leader Interview Introduction</h1>
+<dl><dt>{{.Heading | printf "%s"}}</dt>{{range .Point}}<dd>{{. | printf "%s"}}</dd>{{end}}</dl>
+
+{{with .Image}}
+<img src="images/LasVegas.jpg" alt="HTML" width="1400" height="500" class="flowRight">
+{{end}}
+
+<iframe width="1340" height="400" src="/links" frameborder="0"></iframe>
+<p>Micah Weston | follow me on github.com/red1bluelost</p>
 </body>
 </html>

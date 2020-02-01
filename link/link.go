@@ -1,24 +1,26 @@
 package link
 
+import "fmt"
+
 type Linker struct {
 	//AlreadyInitialized bool
 	previousLink       string
 
-	viewSchool *link
-	school     *link
+	ViewSchool *link
+	School     *link
 	sch        uint8
-	schCecs    *link
-	schNUCAR   *link
-	schClubs   *link
+	SchCecs    *link
+	SchNUCAR   *link
+	SchClubs   *link
 
-	viewMusic *link
-	music     *link
+	ViewMusic *link
+	Music     *link
 	mus       uint8
-	musGuitar *link
-	musMetal  *link
-	musStrEdg *link
+	MusGuitar *link
+	MusMetal  *link
+	MusStrEdg *link
 
-	end *link
+	End *link
 }
 
 type link string
@@ -28,19 +30,19 @@ var gLink link = "active"
 func (l *Linker) Reset() {
 	l.sch, l.mus = 4, 4
 
-	l.viewSchool = nil
-	l.school = nil
-	l.schCecs = nil
-	l.schNUCAR = nil
-	l.schClubs = nil
+	l.ViewSchool = nil
+	l.School = nil
+	l.SchCecs = nil
+	l.SchNUCAR = nil
+	l.SchClubs = nil
 
-	l.viewMusic = nil
-	l.music = nil
-	l.musMetal = nil
-	l.musGuitar = nil
-	l.musStrEdg = nil
+	l.ViewMusic = nil
+	l.Music = nil
+	l.MusMetal = nil
+	l.MusGuitar = nil
+	l.MusStrEdg = nil
 
-	l.end = nil
+	l.End = nil
 }
 
 func (l *Linker) Handle(s string) {
@@ -51,10 +53,10 @@ func (l *Linker) Handle(s string) {
 
 	switch s {
 	case "intro":
-		l.music = &gLink
-		l.school = &gLink
-		l.viewMusic = &gLink
-		l.viewSchool = &gLink
+		l.Music = &gLink
+		l.School = &gLink
+		l.ViewMusic = &gLink
+		l.ViewSchool = &gLink
 		return
 	case "school", "CECS", "NUCAR", "clubs":
 		l.handleSchool(s)
@@ -65,6 +67,8 @@ func (l *Linker) Handle(s string) {
 	case "end":
 		l.Reset()
 		return
+	default:
+		fmt.Printf("Linker does not know how to handle %s\n", s)
 	}
 }
 
@@ -78,23 +82,23 @@ func (l *Linker) handleSchool(s string) {
 
 	switch s {
 	case "school":
-		l.school = nil
-		l.schCecs = &gLink
-		l.schClubs = &gLink
-		l.schNUCAR = &gLink
-		l.viewMusic = nil
+		l.School = nil
+		l.SchCecs = &gLink
+		l.SchClubs = &gLink
+		l.SchNUCAR = &gLink
+		l.ViewMusic = nil
 		return
 	case "CECS":
-		l.schCecs = nil
-		if l.sch == 0 {l.viewMusic, l.viewSchool = &gLink, nil}
+		l.SchCecs = nil
+		if l.sch == 0 {l.ViewMusic, l.ViewSchool = &gLink, nil}
 		return
 	case "clubs":
-		l.schClubs = nil
-		if l.sch == 0 {l.viewMusic, l.viewSchool = &gLink, nil}
+		l.SchClubs = nil
+		if l.sch == 0 {l.ViewMusic, l.ViewSchool = &gLink, nil}
 		return
 	case "NUCAR":
-		l.schNUCAR = nil
-		if l.sch == 0 {l.viewMusic, l.viewSchool = &gLink, nil}
+		l.SchNUCAR = nil
+		if l.sch == 0 {l.ViewMusic, l.ViewSchool = &gLink, nil}
 		return
 	}
 }
@@ -109,27 +113,27 @@ func (l *Linker) handleMusic(s string) {
 
 	switch s {
 	case "music":
-		l.music = nil
-		l.musGuitar = &gLink
-		l.viewSchool = nil
+		l.Music = nil
+		l.MusGuitar = &gLink
+		l.ViewSchool = nil
 		return
 	case "guitar":
-		l.musGuitar = nil
-		l.musMetal = &gLink
+		l.MusGuitar = nil
+		l.MusMetal = &gLink
 		return
 	case "metal":
-		l.musMetal = nil
-		l.musStrEdg = &gLink
+		l.MusMetal = nil
+		l.MusStrEdg = &gLink
 		return
 	case "stredg":
-		l.musStrEdg = nil
-		l.viewSchool = &gLink
-		l.viewMusic = nil
+		l.MusStrEdg = nil
+		l.ViewSchool = &gLink
+		l.ViewMusic = nil
 		return
 	}
 }
 
 func (l *Linker) setEnd() {
 	l.Reset()
-	l.end = &gLink
+	l.End = &gLink
 }
