@@ -18,7 +18,6 @@ body {
 	padding: 2.5% 2.5% 0;
 	color: white;
 	background: dimgrey;
-	line-height: 1.8;
 }
 h1 {
 	font: 1.6em "Times New Roman", Geneva, sans-serif;
@@ -55,7 +54,12 @@ dt {
 	margin-bottom: 0.6em;
 }
 dd {
-	margin-bottom: 1.4em;
+	margin-bottom: 0.8em;
+	font-size: 1.6em;
+}
+.hangingindent {
+	padding-left: 20px ;
+	text-indent: -50px ;
 }
 table {
 	background: orange;

@@ -7,10 +7,25 @@
 </head>
 <body>
 <h1>Orientation Leader Interview Introduction</h1>
-<dl><dt>{{.Heading | printf "%s"}}</dt>{{range .Point}}<dd>{{. | printf "%s"}}</dd>{{end}}</dl>
+<dl><dt>{{.Heading | printf "%s"}}</dt>{{range .Point}}<dd class="hangingindent">{{. | printf "%s"}}</dd>{{end}}</dl>
 
 {{with .Image}}
-<img src="images/LasVegas.jpg" alt="HTML" width="1400" height="500" class="flowRight">
+    <p>
+        {{if .LV}}<img src="images/LasVegas.jpg" alt="HTML" style="max-width: 100%">{{end}}
+        {{if .AVHS}}<img src="images/ArborView.jpg" alt="HTML" style="max-width: 100%">{{end}}
+        {{if .CPP}}<img src="images/CPP.png" alt="HTML" style="max-width: 100%">{{end}}
+        {{if .GitHub}}<img src="images/GitHub.jpg" alt="HTML" style="max-width: 100%">{{end}}
+        {{if .GoLang}}<img src="images/Golang.png" alt="HTML" style="max-width: 100%">{{end}}
+        {{if .Akita}}<img src="images/Akita.png" alt="HTML" style="max-width: 100%">{{end}}
+        {{if .Baja}}<img src="images/NUBaja.png" alt="HTML" style="max-width: 100%">{{end}}
+        {{if .NUSound}}<img src="images/NUSound.jpg" alt="HTML" style="max-width: 100%">{{end}}
+        {{if .RG}}<img src="images/RGIR28FE.jpg" alt="HTML" style="max-width: 100%">{{end}}
+        {{if .BTBAM}}<img src="images/BTBAM.jpg" alt="HTML" style="max-width: 100%">{{end}}
+        {{if .AAL}}<img src="images/AnimalsAsLeaders.jpg" alt="HTML" style="max-width: 100%">{{end}}
+        {{if .Paul}}<img src="images/PaulWaggoner.jpg" alt="HTML" style="max-width: 100%">{{end}}
+        {{if .Alissa}}<img src="images/AlissaWhiteGluz.jpg" alt="HTML" style="max-width: 100%">{{end}}
+        {{if .Program}}<img src="images/ProgramNotEasy.png" alt="HTML" style="max-width: 100%">{{end}}
+    </p>
 {{end}}
 
 <iframe width="1340" height="400" src="/links" frameborder="0"></iframe>

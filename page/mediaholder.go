@@ -19,7 +19,6 @@ type ImageHolder struct {
 func (ih *ImageHolder) AssignImage(img []byte) {
 	switch {
 	case 0 == bytes.Compare([]byte("LasVegas"), img):
-		fmt.Printf("Found Vegas\n")
 		ih.LV = true
 	case 0 == bytes.Compare([]byte("ArborView"), img):
 		ih.AVHS = true

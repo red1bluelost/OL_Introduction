@@ -27,7 +27,6 @@ func LinkPageHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Printf("Linker could not execute\n")
 	}
-	//handle this error from execute
 }
 
 //handler function for all http requests
@@ -75,6 +74,8 @@ func loadPage(title string) (*Page, error) {
 
 	//tell the linker to handle the event
 	GLinker.Handle(title)
+	GLinker.DebugLinks()
+
 	return page, nil
 }
 
