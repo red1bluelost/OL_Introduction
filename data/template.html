@@ -7,24 +7,27 @@
 </head>
 <body>
 <h1>Orientation Leader Interview Introduction</h1>
-<dl><dt>{{.Heading | printf "%s"}}</dt>{{range .Point}}<dd class="hangingindent">{{. | printf "%s"}}</dd>{{end}}</dl>
+<h3>{{.Heading | printf "%s"}}</h3>
+<ul>
+    {{range .Point}}<li class="hangingindent">{{. | printf "%s"}}</li>{{end}}
+</ul>
 
 {{with .Image}}
     <p>
         {{if .LV}}<img src="images/LasVegas.jpg" alt="HTML" style="max-width: 100%">{{end}}
-        {{if .AVHS}}<img src="images/ArborView.jpg" alt="HTML" style="max-width: 100%">{{end}}
-        {{if .CPP}}<img src="images/CPP.png" alt="HTML" style="max-width: 100%">{{end}}
-        {{if .GitHub}}<img src="images/GitHub.jpg" alt="HTML" style="max-width: 100%">{{end}}
-        {{if .GoLang}}<img src="images/Golang.png" alt="HTML" style="max-width: 100%">{{end}}
-        {{if .Akita}}<img src="images/Akita.png" alt="HTML" style="max-width: 100%">{{end}}
-        {{if .Baja}}<img src="images/NUBaja.png" alt="HTML" style="max-width: 100%">{{end}}
-        {{if .NUSound}}<img src="images/NUSound.jpg" alt="HTML" style="max-width: 100%">{{end}}
+        {{if .AVHS}}<img src="images/ArborView.jpg" alt="HTML" style="max-width: 40%" class="flowRight">{{end}}
+        {{if .CPP}}<img src="images/CPP.png" alt="HTML" style="max-width: 30%" class="flowLeft">{{end}}
+        {{if .GitHub}}<img src="images/GitHub.jpg" alt="HTML" style="max-width: 55%" class="flowRight">{{end}}
+        {{if .GoLang}}<img src="images/Golang.png" alt="HTML" style="max-width: 60%" class="flowLeft">{{end}}
+        {{if .Akita}}<img src="images/Akita.png" alt="HTML" style="max-width: 30%" class="flowRight">{{end}}
+        {{if .Baja}}<img src="images/NUBaja.png" alt="HTML" style="width: 50%" class="flowLeft">{{end}}
+        {{if .NUSound}}<img src="images/NUSound.jpg" alt="HTML" style="max-width: 100%" class="flowRight">{{end}}
         {{if .RG}}<img src="images/RGIR28FE.jpg" alt="HTML" style="max-width: 100%">{{end}}
-        {{if .BTBAM}}<img src="images/BTBAM.jpg" alt="HTML" style="max-width: 100%">{{end}}
-        {{if .AAL}}<img src="images/AnimalsAsLeaders.jpg" alt="HTML" style="max-width: 100%">{{end}}
-        {{if .Paul}}<img src="images/PaulWaggoner.jpg" alt="HTML" style="max-width: 100%">{{end}}
-        {{if .Alissa}}<img src="images/AlissaWhiteGluz.jpg" alt="HTML" style="max-width: 100%">{{end}}
-        {{if .Program}}<img src="images/ProgramNotEasy.png" alt="HTML" style="max-width: 100%">{{end}}
+        {{if .BTBAM}}<img src="images/BTBAM.jpg" alt="HTML" style="max-width: 49%" class="flowLeft">{{end}}
+        {{if .AAL}}<img src="images/AnimalsAsLeaders.jpg" alt="HTML" style="max-width: 49%" class="flowRight">{{end}}
+        {{if .Paul}}<img src="images/PaulWaggoner.jpg" alt="HTML" style="max-width: 40%" class="flowLeft">{{end}}
+        {{if .Alissa}}<img src="images/AlissaWhiteGluz.jpg" alt="HTML" style="max-width: 40%" class="flowRight">{{end}}
+        {{if .Program}}<img src="images/ProgramNotEasy.png" alt="HTML" style="width: 70%" class="flowCenter">{{end}}
     </p>
 {{end}}
 

@@ -1,5 +1,5 @@
 Finally - How this presentation was made(h)
 Operating from an internal HTTP server programmed with Go(p)
-Required me to learn basics of http servers, html, and css(p)
+Required me to learn how to use http servers, html, and css(p)
 ADD MORE HERE(p)
 meme(i)

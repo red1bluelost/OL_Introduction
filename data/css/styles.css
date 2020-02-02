@@ -6,7 +6,7 @@ h1, h2, h3, h4, h5, h6, p {
 	margin: 0;
 	padding: 0;
 }
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h4, h5, h6 {
 	color: rgb(107, 107, 132);
 }
 body {
@@ -28,9 +28,7 @@ h2 {
 	font: 3.2em Georgia, "Times New Roman", Times, serif;
 	margin-bottom: .2em;
 }
-h3 {
-	font-size: 1.2em;
-}
+
 p {
 	font-size: 0.8em;
 	margin-top: 5em;
@@ -48,12 +46,15 @@ pre.wrong {
 pre.correct {
 	border-left-color: green;
 }
-dt {
+h3 {
 	font-style: oblique;
 	font-size:3em;
 	margin-bottom: 0.6em;
 }
-dd {
+ul {
+	padding-left: 5em;
+}
+li {
 	margin-bottom: 0.8em;
 	font-size: 1.6em;
 }
@@ -81,32 +82,16 @@ header h2 {
 	padding-bottom: .2em;
 	border-bottom: 1px solid gray;
 }
-aside {
-	padding: 1em;
-	background:rgb(83, 104, 138);
-	color: white;
-	margin-bottom: 1em;
-}
-aside h4 {
-	color: white;
-}
-footer {
-	border-top: 1px solid gray;
-	text-align: center;
-	font-size: .8em;
-	line-height: 4em;
-	margin-top: 1em;
-}
-blockquote {
-	font-style: italic;
-}
-.flowRight {
+img.flowRight {
 	float: right;
 	margin-left: 10px;
 }
-.flowLeft {
+img.flowLeft {
 	float: left;
 	margin-right: 10px;
+}
+img.flowCenter {
+	padding-left: 10em;
 }
 div {
 	border: 2em black;
