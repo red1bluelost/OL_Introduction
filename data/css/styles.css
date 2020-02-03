@@ -40,12 +40,6 @@ a {
 a:hover {
 	color: rgb(120, 97, 55);
 }
-pre.wrong {
-	border-left-color: red;
-}
-pre.correct {
-	border-left-color: green;
-}
 h3 {
 	font-style: oblique;
 	font-size:3em;
@@ -62,25 +56,8 @@ li {
 	padding-left: 20px ;
 	text-indent: -50px ;
 }
-table {
-	background: orange;
-	margin-top: 1em;
-}
-caption {
-	margin: 0;
-	padding: 0;
-	margin-bottom: 1em;
-	text-align: left;
-}
-td, th {
-	padding: 10px;
-}
 .center {
 	text-align: center;
-}
-header h2 {
-	padding-bottom: .2em;
-	border-bottom: 1px solid gray;
 }
 img.flowRight {
 	float: right;
@@ -93,6 +70,10 @@ img.flowLeft {
 img.flowCenter {
 	padding-left: 10em;
 }
-div {
-	border: 2em black;
+footer {
+	border-top: 1px solid gray;
+	text-align: center;
+	font-size: .8em;
+	line-height: 3em;
+	margin-top: 0em;
 }

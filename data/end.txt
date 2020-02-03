@@ -1,5 +1,6 @@
 Finally - How this presentation was made(h)
-Operating from an internal HTTP server programmed with Go(p)
+Back end programmed in Go(p)
+Front end written with Go's html templating(p)
 Required me to learn how to use http servers, html, and css(p)
-ADD MORE HERE(p)
+846 lines of code, 41 files, 6 directories(p)
 meme(i)

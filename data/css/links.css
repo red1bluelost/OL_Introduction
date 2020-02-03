@@ -2,11 +2,13 @@ html, body {
     background: dimgrey;
     margin: 0;
 }
-h1, h2, h3, h4, h5, h6, p {
+h6 {
+    font-size: 4em;
     margin: 0;
     padding: 0;
+    text-align: center;
 }
-h1, h2, h3, h4, h5, h6 {
+h6 {
     color: rgb(107, 107, 132);
 }
 iframe {
@@ -22,52 +24,15 @@ body {
     color: white;
     line-height: 1.8;
 }
-h1 {
-    font: 1.6em "Times New Roman", Geneva, sans-serif;
-    margin-bottom: .4em;
-    color: black;
-}
-h2 {
-    font: 3.2em Georgia, "Times New Roman", Times, serif;
-    margin-bottom: .2em;
-}
-h3 {
-    font-size: 1.2em;
-}
-p {
-    font-size: 0.8em;
-    margin-top: 5em;
-    margin-bottom: 1em;
-}
 a {
     color: rgb(184, 126, 84);
 }
 a:hover {
     color: rgb(120, 97, 55);
 }
-pre.wrong {
-    border-left-color: red;
-}
-pre.correct {
-    border-left-color: green;
-}
-dt {
-    font-style: oblique;
-    font-size:3em;
-    margin-bottom: 0.6em;
-}
-dd {
-    margin-bottom: 1.4em;
-}
 table {
     background: orange;
     margin-top: 1em;
-}
-caption {
-    margin: 0;
-    padding: 0;
-    margin-bottom: 1em;
-    text-align: left;
 }
 td, th {
     padding: 10px;
@@ -86,9 +51,6 @@ footer {
     line-height: 4em;
     margin-top: 1em;
 }
-blockquote {
-    font-style: italic;
-}
 .flowRight {
     float: right;
     margin-left: 10px;
@@ -96,7 +58,4 @@ blockquote {
 .flowLeft {
     float: left;
     margin-right: 10px;
-}
-div {
-    border: 2em black;
 }
